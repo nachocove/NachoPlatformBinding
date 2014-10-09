@@ -15,6 +15,7 @@
 		224DEFB318B7BEC200E88BA8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 224DEFB118B7BEC200E88BA8 /* InfoPlist.strings */; };
 		224DEFB518B7BEC200E88BA8 /* NachoPlatformLibTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 224DEFB418B7BEC200E88BA8 /* NachoPlatformLibTests.m */; };
 		22A1D03018B7BF5200E4398C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A1D02F18B7BF5200E4398C /* Reachability.m */; };
+		BA92339019E67666002742D9 /* PlatformProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = BA92338F19E67666002742D9 /* PlatformProcess.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		224DEFB418B7BEC200E88BA8 /* NachoPlatformLibTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NachoPlatformLibTests.m; sourceTree = "<group>"; };
 		22A1D02E18B7BF5200E4398C /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = ../../../Reachability/Reachability.h; sourceTree = "<group>"; };
 		22A1D02F18B7BF5200E4398C /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = ../../../Reachability/Reachability.m; sourceTree = "<group>"; };
+		BA92338F19E67666002742D9 /* PlatformProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlatformProcess.m; sourceTree = "<group>"; };
+		BA92339119E676A3002742D9 /* PlatformProcess.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlatformProcess.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +114,8 @@
 				22A1D02E18B7BF5200E4398C /* Reachability.h */,
 				22A1D02F18B7BF5200E4398C /* Reachability.m */,
 				224DEF9B18B7BEC200E88BA8 /* Supporting Files */,
+				BA92338F19E67666002742D9 /* PlatformProcess.m */,
+				BA92339119E676A3002742D9 /* PlatformProcess.h */,
 			);
 			path = NachoPlatformLib;
 			sourceTree = "<group>";
@@ -222,6 +227,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA92339019E67666002742D9 /* PlatformProcess.m in Sources */,
 				22A1D03018B7BF5200E4398C /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

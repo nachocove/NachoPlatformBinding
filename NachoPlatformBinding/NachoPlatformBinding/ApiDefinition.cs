@@ -34,5 +34,12 @@ namespace NachoPlatformBinding
 		[Export ("stopNotifier")]
 		void StopNotifier ();
     }
+
+    [BaseType (typeof(NSObject))]
+    interface PlatformProcess
+    {
+        [Static, Export ("getUsedMemory")]
+        long GetUsedMemory ();
+    }
 }
 
