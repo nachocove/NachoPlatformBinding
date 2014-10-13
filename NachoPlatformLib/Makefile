@@ -4,6 +4,8 @@ PROJECT_ROOT=.
 PROJECT=$(PROJECT_ROOT)/NachoPlatformLib.xcodeproj
 TARGET=NachoPlatformLib
 
+.PHONY: libNachoPlatformLib-i386.a libNachoPlatformLib-armv7.a
+
 all: libNachoPlatformLibSDK.a
 
 libNachoPlatformLib-i386.a:
