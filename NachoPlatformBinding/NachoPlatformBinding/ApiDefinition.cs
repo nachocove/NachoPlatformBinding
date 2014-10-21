@@ -40,6 +40,12 @@ namespace NachoPlatformBinding
     {
         [Static, Export ("getUsedMemory")]
         long GetUsedMemory ();
+
+        [Static, Export ("getCurrentNumberOfFileDescriptors")]
+        int GetCurrentNumberOfFileDescriptors ();
+
+        [Static, Export ("getFileNameForDescriptor:")]
+        string GetFileNameForDescriptor (int fd);
     }
 }
 
