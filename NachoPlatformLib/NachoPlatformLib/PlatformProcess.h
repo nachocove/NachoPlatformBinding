@@ -11,7 +11,11 @@
 
 @interface PlatformProcess : NSObject
 
-+ (long)GetUsedMemory;
++ (long)getUsedMemory;
+
++ (int)getCurrentNumberOfFileDescriptors;
+
++ (NSString *)getFileNameForDescriptor:(int)fd;
 
 @end
 
