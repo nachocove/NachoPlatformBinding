@@ -33,6 +33,20 @@
     return (int)info.rlim_cur;
 }
 
++ (int)getCurrentNumberOfInUseFileDescriptors
+{
+    struct stat info;
+    int numFds, numInUseFds = 0;
+    
+    numFds = [PlatformProcess getCurrentNumberOfFileDescriptors];
+    for (int fd = 0; fd < numFds; fd++) {
+        if (0 == fstat(fd, &info)) {
+            numInUseFds++;
+        }
+    }
+    return numInUseFds;
+}
+
 + (NSString *)getFileNameForDescriptor:(int)fd
 {
     int rc;
@@ -45,6 +59,9 @@
     }
     if (S_ISSOCK(info.st_mode)) {
         return @"<socket>";
+    }
+    if (S_ISFIFO(info.st_mode)) {
+        return @"<fifo>";
     }
     
     // Get the file path

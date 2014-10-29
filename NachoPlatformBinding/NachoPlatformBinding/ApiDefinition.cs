@@ -44,6 +44,9 @@ namespace NachoPlatformBinding
         [Static, Export ("getCurrentNumberOfFileDescriptors")]
         int GetCurrentNumberOfFileDescriptors ();
 
+        [Static, Export ("getCurrentNumberOfInUseFileDescriptors")]
+        int GetCurrentNumberOfInUseFileDescriptors ();
+
         [Static, Export ("getFileNameForDescriptor:")]
         string GetFileNameForDescriptor (int fd);
     }

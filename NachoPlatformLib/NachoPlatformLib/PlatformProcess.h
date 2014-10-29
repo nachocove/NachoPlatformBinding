@@ -15,6 +15,8 @@
 
 + (int)getCurrentNumberOfFileDescriptors;
 
++ (int)getCurrentNumberOfInUseFileDescriptors;
+
 + (NSString *)getFileNameForDescriptor:(int)fd;
 
 @end
