@@ -43,12 +43,15 @@
     if (0 != fstat(fd, &info)) {
         return nil;
     }
+    if (S_ISSOCK(info.st_mode)) {
+        return @"<socket>";
+    }
     
     // Get the file path
     memset(buf, sizeof(buf), 0);
     rc = fcntl(fd, F_GETPATH, buf);
     if (0 != rc) {
-        return nil;
+        return @"<unknown>";
     }
     
     return [NSString stringWithUTF8String:buf];
