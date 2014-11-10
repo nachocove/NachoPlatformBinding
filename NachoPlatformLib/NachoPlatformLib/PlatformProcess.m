@@ -11,6 +11,8 @@
 #import <sys/stat.h>
 #import "mach/mach.h"
 #import "PlatformProcess.h"
+#import <netinet/in.h>
+#import <arpa/inet.h>
 
 @implementation PlatformProcess
 
@@ -58,7 +60,15 @@
         return nil;
     }
     if (S_ISSOCK(info.st_mode)) {
-        return @"<socket>";
+        struct sockaddr_in addr;
+        socklen_t addr_len = sizeof(addr);
+        int rc = getpeername(fd, (struct sockaddr *)&addr, &addr_len);
+        if (0 != rc) {
+            snprintf(buf, sizeof(buf), "<socket: destination unknown>");
+        } else {
+            snprintf(buf, sizeof(buf), "<socket: %s>", inet_ntoa(addr.sin_addr));
+        }
+        return [NSString stringWithUTF8String:buf];
     }
     if (S_ISFIFO(info.st_mode)) {
         return @"<fifo>";
