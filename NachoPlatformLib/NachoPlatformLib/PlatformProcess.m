@@ -60,13 +60,51 @@
         return nil;
     }
     if (S_ISSOCK(info.st_mode)) {
-        struct sockaddr_in addr;
-        socklen_t addr_len = sizeof(addr);
-        int rc = getpeername(fd, (struct sockaddr *)&addr, &addr_len);
+        char sock_buf[2048];
+        struct sockaddr *addr = (struct sockaddr *)sock_buf;
+        socklen_t addr_len = sizeof(sock_buf);
+        int rc = getpeername(fd, addr, &addr_len);
         if (0 != rc) {
-            snprintf(buf, sizeof(buf), "<socket: destination unknown>");
+            snprintf(buf, sizeof(sock_buf), "<socket: destination unknown>");
         } else {
-            snprintf(buf, sizeof(buf), "<socket: %s>", inet_ntoa(addr.sin_addr));
+            switch (addr->sa_family) {
+                case AF_INET: {
+                    char addr_buf[INET_ADDRSTRLEN+1];
+                    memset(addr_buf, 0, sizeof(addr_buf));
+                    const char *addr_str = inet_ntop(AF_INET, sock_buf, addr_buf, addr->sa_len);
+                    if (addr_str) {
+                        snprintf(buf, sizeof(buf), "<ipv4 socket: %s>", addr_str);
+                    } else {
+                        snprintf(buf, sizeof(buf), "<ipv4 socket: unknown address (errno=%d)", errno);
+                    }
+                    break;
+                }
+                case AF_INET6: {
+                    char addr6_buf[INET6_ADDRSTRLEN+1];
+                    memset(addr6_buf, 0, sizeof(addr6_buf));
+                    const char *addr_str = inet_ntop(AF_INET6, sock_buf, addr6_buf, addr->sa_len);
+                    if (addr_str) {
+                        snprintf(buf, sizeof(buf), "<ipv6 socket: %s>", addr_str);
+                    } else {
+                        snprintf(buf, sizeof(buf), "<ipv6 socket: unknown address (errno=%d)", errno);
+                    }
+                    break;
+                }
+                case AF_UNIX: {
+                    // In Xcode 6, sockaddr_un disappears. So, we need to directly
+                    // print out the 2nd byte of the sockaddr where the file path starts
+                    snprintf(buf, sizeof(buf), "<unix socket: %s>", &sock_buf[2]);
+                    break;
+                }
+                case AF_SYSTEM: {
+                    snprintf(buf, sizeof(buf), "<system socket>");
+                    break;
+                }
+                default: {
+                    snprintf(buf, sizeof(buf), "<unknown socket: af=%d>", addr->sa_family);
+                    break;
+                }
+            }
         }
         return [NSString stringWithUTF8String:buf];
     }
