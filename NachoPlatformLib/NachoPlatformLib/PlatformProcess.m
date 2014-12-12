@@ -69,9 +69,10 @@
         } else {
             switch (addr->sa_family) {
                 case AF_INET: {
+                    struct sockaddr_in *addr4 = (struct sockaddr_in *)sock_buf;
                     char addr_buf[INET_ADDRSTRLEN+1];
                     memset(addr_buf, 0, sizeof(addr_buf));
-                    const char *addr_str = inet_ntop(AF_INET, sock_buf, addr_buf, addr->sa_len);
+                    const char *addr_str = inet_ntop(AF_INET, &addr4->sin_addr.s_addr, addr_buf, sizeof(addr_buf));
                     if (addr_str) {
                         snprintf(buf, sizeof(buf), "<ipv4 socket: %s>", addr_str);
                     } else {
@@ -80,9 +81,10 @@
                     break;
                 }
                 case AF_INET6: {
+                    struct sockaddr_in6 *addr6 = (struct sockaddr_in6 *)sock_buf;
                     char addr6_buf[INET6_ADDRSTRLEN+1];
                     memset(addr6_buf, 0, sizeof(addr6_buf));
-                    const char *addr_str = inet_ntop(AF_INET6, sock_buf, addr6_buf, addr->sa_len);
+                    const char *addr_str = inet_ntop(AF_INET6, &addr6->sin6_addr, addr6_buf, sizeof(addr6_buf));
                     if (addr_str) {
                         snprintf(buf, sizeof(buf), "<ipv6 socket: %s>", addr_str);
                     } else {
