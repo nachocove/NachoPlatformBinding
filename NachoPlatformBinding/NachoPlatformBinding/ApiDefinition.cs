@@ -28,11 +28,11 @@ namespace NachoPlatformBinding
         [Export ("isReachableViaWiFi")]
         bool IsReachableViaWiFi ();
 
-		[Export ("startNotifier")]
-		void StartNotifier ();
+        [Export ("startNotifier")]
+        void StartNotifier ();
 
-		[Export ("stopNotifier")]
-		void StopNotifier ();
+        [Export ("stopNotifier")]
+        void StopNotifier ();
     }
 
     [BaseType (typeof(NSObject))]
@@ -49,6 +49,9 @@ namespace NachoPlatformBinding
 
         [Static, Export ("getFileNameForDescriptor:")]
         string GetFileNameForDescriptor (int fd);
+
+        [Static, Export ("getNumberOfSystemThreads")]
+        int GetNumberOfSystemThreads ();
     }
 }
 
