@@ -19,6 +19,8 @@
 
 + (NSString *)getFileNameForDescriptor:(int)fd;
 
++ (int)getNumberOfSystemThreads;
+
 @end
 
 

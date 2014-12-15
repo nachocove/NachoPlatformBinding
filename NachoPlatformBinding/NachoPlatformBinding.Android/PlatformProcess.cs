@@ -2,16 +2,16 @@
 
 namespace NachoPlatformBinding
 {
-	public class PlatformProcess
-	{
-		public PlatformProcess ()
-		{
-		}
+    public class PlatformProcess
+    {
+        public PlatformProcess ()
+        {
+        }
 
-		public static long GetUsedMemory ()
-		{
-			throw new NotImplementedException ();
-		}
+        public static long GetUsedMemory ()
+        {
+            throw new NotImplementedException ();
+        }
 
         public static int GetCurrentNumberOfFileDescriptors ()
         {
@@ -27,6 +27,11 @@ namespace NachoPlatformBinding
         {
             throw new NotImplementedException ();
         }
-	}
+
+        public static int GetNumberOfSystemThreads ()
+        {
+            throw new NotImplementedException ();
+        }
+    }
 }
 

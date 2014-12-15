@@ -124,4 +124,14 @@
     return [NSString stringWithUTF8String:buf];
 }
 
++ (int) getNumberOfSystemThreads
+{
+    mach_msg_type_number_t count;
+    thread_act_array_t thread_list;
+    if (KERN_SUCCESS != task_threads(mach_task_self(), &thread_list, &count)) {
+        return -1;
+    }
+    return count;
+}
+
 @end
