@@ -13,6 +13,7 @@
 #import "PlatformProcess.h"
 #import <netinet/in.h>
 #import <arpa/inet.h>
+#import <execinfo.h>
 
 @implementation PlatformProcess
 
@@ -132,6 +133,20 @@
         return -1;
     }
     return count;
+}
+
++ (NSArray *) getStackTrace
+{
+    void* callstack[128];
+    int i, numFrames = backtrace(callstack, 128);
+    char** strs = backtrace_symbols(callstack, numFrames);
+    NSMutableArray *stackFrames = [NSMutableArray arrayWithCapacity:numFrames];
+    for (i = 0; i < numFrames; ++i) {
+        NSString *frame = [NSString stringWithUTF8String:strs[i]];
+        [stackFrames setObject:frame atIndexedSubscript:i];
+    }
+    free(strs);
+    return stackFrames;
 }
 
 @end

@@ -32,6 +32,11 @@ namespace NachoPlatformBinding
         {
             throw new NotImplementedException ();
         }
+
+        public static string[] GetStackTrace ()
+        {
+            throw new NotImplementedException ();
+        }
     }
 }
 
