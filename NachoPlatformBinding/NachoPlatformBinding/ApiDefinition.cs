@@ -52,6 +52,9 @@ namespace NachoPlatformBinding
 
         [Static, Export ("getNumberOfSystemThreads")]
         int GetNumberOfSystemThreads ();
+
+        [Static, Export ("getStackTrace")]
+        string[] GetStackTrace ();
     }
 }
 

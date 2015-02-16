@@ -21,6 +21,8 @@
 
 + (int)getNumberOfSystemThreads;
 
++ (NSString *)getStackTrace;
+
 @end
 
 
