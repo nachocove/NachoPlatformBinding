@@ -15,7 +15,7 @@
 
 + (NSString *)crlToString:(NSString *)crlPem;
 
-+ (BOOL)verifyCertificate:(NSArray *)certPem pinnedCertificate:(NSString *)rootPem crls:(NSArray *)crlPem;
++ (NSArray *)crlGetRevoked:(NSString *)crl signingCert:(NSString *)cert;
 
 @end
 

@@ -5,9 +5,9 @@
 #include <stdarg.h>
 #include <errno.h>
 #include <string.h>
-#include "include/openssl/x509.h"
-#include "include/openssl/bio.h"
-#include "include/openssl/pem.h"
+#include <openssl/x509.h>
+#include <openssl/bio.h>
+#include <openssl/pem.h>
 #include "crypto_openssl.h"
 
 #define TRUE (1)

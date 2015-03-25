@@ -8,35 +8,65 @@
 
 #import <Foundation/Foundation.h>
 #import "Crypto.h"
+#import "crypto_openssl.h"
 
 @implementation Crypto
 
-+ (NSString *)certificateToString:(NSString *)certPem:(NSString *)certPem
++ (NSString *)certificateToString:(NSString *)certPem
 {
-    NSLog(@"dumpCertificate");
     if (nil == certPem) {
         return nil;
     }
-    
-    // Read in the certifcate in PEM
     const char *pem = [certPem UTF8String];
+    char *desc = openssl_cert_to_string(pem);
+    if (NULL == desc) {
+        return nil;
+    }
+    NSString *retval = [NSString stringWithUTF8String:desc];
+    free(desc);
+    return retval;
 }
 
 + (NSString *)crlToString:(NSString *)crlPem;
 {
-    NSLog(@"dumpCrl");
     if (nil == crlPem) {
-        return;
+        return nil;
     }
-    
-    // Read in the CRL in PEM
-    
-    // Print it out
+    const char *pem = [crlPem UTF8String];
+    char *desc = openssl_crl_to_string(pem);
+    if (NULL == desc) {
+        return nil;
+    }
+    NSString *retval = [NSString stringWithUTF8String:desc];
+    free(desc);
+    return retval;
 }
 
-+ (BOOL)verifyCertificate:(NSArray *)certPem pinnedCertificate:(NSString *)rootPem crls:(NSArray *)crlPem
++ (NSArray *)crlGetRevoked:(NSString *)crl signingCert:(NSString *)cert
 {
-    return true;
+    const char *crlPem = NULL;
+    const char *certPem =  NULL;
+    if (nil != crl) {
+        crlPem = [crl UTF8String];
+    }
+    if (nil != cert) {
+        certPem = [cert UTF8String];
+    }
+    const char *reason = NULL;
+    char **snList = openssl_crl_get_revoked(crlPem, certPem, &reason);
+    if (NULL == snList) {
+        NSLog(@"%s", reason);
+        return nil;
+    }
+    NSMutableArray *retval = [[NSMutableArray alloc] init];
+    while (NULL != *snList) {
+        [retval addObject:[NSString stringWithUTF8String:*snList]];
+        free(*snList);
+        *snList = NULL;
+        snList++;
+    }
+    free(snList);
+    return retval;
 }
 
 @end
