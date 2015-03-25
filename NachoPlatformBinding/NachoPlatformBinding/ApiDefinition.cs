@@ -56,5 +56,18 @@ namespace NachoPlatformBinding
         [Static, Export ("getStackTrace")]
         string[] GetStackTrace ();
     }
+
+    [BaseType (typeof(NSObject))]
+    interface Crypto
+    {
+        [Static, Export ("certificateToString:")]
+        string CertificateToString (string pem);
+
+        [Static, Export ("crlToString:")]
+        string CrlToString (string pem);
+
+        [Static, Export ("crlGetRevoked:signingCert:")]
+        string[] CrlGetRevoked (string crl, string signingCert);
+    }
 }
 
