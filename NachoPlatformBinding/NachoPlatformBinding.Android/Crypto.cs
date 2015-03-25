@@ -20,6 +20,11 @@ namespace NachoPlatformBinding
         {
             throw new NotImplementedException ();
         }
+
+        public static string[] CrlGetRevoked (string crl)
+        {
+            throw new NotImplementedException ();
+        }
     }
 }
 

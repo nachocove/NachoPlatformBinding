@@ -17,6 +17,8 @@
 
 + (NSArray *)crlGetRevoked:(NSString *)crl signingCert:(NSString *)cert;
 
++ (NSArray *)crlGetRevoked:(NSString *)crl;
+
 @end
 
 #endif

@@ -68,6 +68,9 @@ namespace NachoPlatformBinding
 
         [Static, Export ("crlGetRevoked:signingCert:")]
         string[] CrlGetRevoked (string crl, string signingCert);
+
+        [Static, Export ("crlGetRevoked:")]
+        string[] CrlGetRevoked (string crl);
     }
 }
 

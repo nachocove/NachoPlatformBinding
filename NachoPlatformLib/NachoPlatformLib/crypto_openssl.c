@@ -214,9 +214,11 @@ openssl_crl_get_revoked (const char *crl_pem, const char *cert_pem, const char *
         return NULL;
     }
     
-    if (0 >= X509_CRL_verify(crl, X509_get_pubkey(signing_cert))) {
-        *reason = "Invalid CRL";
-        return NULL;
+    if (NULL != signing_cert) {
+        if (0 >= X509_CRL_verify(crl, X509_get_pubkey(signing_cert))) {
+            *reason = "Invalid CRL";
+            return NULL;
+        }
     }
     
     STACK_OF(X509_REVOKED) *revoked = X509_CRL_get_REVOKED(crl);

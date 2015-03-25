@@ -54,6 +54,7 @@
     }
     const char *reason = NULL;
     char **snList = openssl_crl_get_revoked(crlPem, certPem, &reason);
+    char **origSnList = snList;
     if (NULL == snList) {
         NSLog(@"%s", reason);
         return nil;
@@ -65,8 +66,13 @@
         *snList = NULL;
         snList++;
     }
-    free(snList);
+    free(origSnList);
     return retval;
+}
+
++ (NSArray *)crlGetRevoked:(NSString *)crl
+{
+    return [Crypto crlGetRevoked:crl signingCert:nil];
 }
 
 @end
