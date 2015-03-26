@@ -17,6 +17,7 @@
 #define MAX_CRL_LEN (100 * 1024) /* assume no CRL is larger than 100 KB */
 #define MAX_DESC_BUF_SIZE (32 * 1024)
 #define MAX_SN_SIZE (512)
+#define TMP_BUF_SIZE (1024)
 
 typedef struct nc_buffer_ {
     char *buf;
@@ -138,13 +139,18 @@ openssl_cert_to_string (const char *pem)
         if (NULL == cert) {
             nc_buffer_printf(buf, "%s", "Cannot parse certificate");
         } else {
-            char tmp_buf[1024];
+            char *tmp_buf = (char *)malloc(TMP_BUF_SIZE);
+            if (NULL == tmp_buf) {
+                nc_buffer_printf(buf, "\nFail to allocate memory (%d)", TMP_BUF_SIZE);
+                return nc_buffer_free(buf);
+            }
             long version = X509_get_version(cert) + 1;
             nc_buffer_printf(buf, "Version: %ld\n", version);
-            char *subject = X509_NAME_oneline(X509_get_subject_name(cert), tmp_buf, sizeof(tmp_buf));
+            char *subject = X509_NAME_oneline(X509_get_subject_name(cert), tmp_buf, TMP_BUF_SIZE);
             nc_buffer_printf(buf, "Subject: %s\n", subject);
-            char *issuer = X509_NAME_oneline(X509_get_issuer_name(cert), tmp_buf, sizeof(tmp_buf));
+            char *issuer = X509_NAME_oneline(X509_get_issuer_name(cert), tmp_buf, TMP_BUF_SIZE);
             nc_buffer_printf(buf, "Issuer: %s\n", issuer);
+            free(tmp_buf);
         }
     }
     return nc_buffer_free(buf);
@@ -165,11 +171,16 @@ openssl_crl_to_string (const char *pem)
         if (NULL == crl) {
             nc_buffer_printf(buf, "%s", "Cannot parse CRL");
         } else {
-            char tmp_buf[1024];
+            char *tmp_buf = (char *)malloc(TMP_BUF_SIZE);
+            if (NULL == tmp_buf) {
+                nc_buffer_printf(buf, "\nFail to allocate memory (%d)", TMP_BUF_SIZE);
+                return nc_buffer_free(buf);
+            }
             long version = X509_CRL_get_version(crl) + 1;
             nc_buffer_printf(buf, "Version: %ld\n", version);
-            char *issuer = X509_NAME_oneline(X509_CRL_get_issuer(crl), tmp_buf, sizeof(tmp_buf));
+            char *issuer = X509_NAME_oneline(X509_CRL_get_issuer(crl), tmp_buf, TMP_BUF_SIZE);
             nc_buffer_printf(buf, "Issuer: %s\n", issuer);
+            free(tmp_buf);
             
             // Dump all revoked certs
             STACK_OF(X509_REVOKED) *revoked = X509_CRL_get_REVOKED(crl);
