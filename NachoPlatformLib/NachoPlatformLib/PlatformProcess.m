@@ -149,4 +149,9 @@
     return stackFrames;
 }
 
++ (NSString *) getClassName:(id)obj
+{
+    return NSStringFromClass([obj class]);
+}
+
 @end

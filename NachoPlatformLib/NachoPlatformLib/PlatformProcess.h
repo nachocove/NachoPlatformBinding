@@ -23,6 +23,8 @@
 
 + (NSString *)getStackTrace;
 
++ (NSString *)getClassName:(id)obj;
+
 @end
 
 
