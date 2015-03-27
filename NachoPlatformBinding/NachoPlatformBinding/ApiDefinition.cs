@@ -55,6 +55,9 @@ namespace NachoPlatformBinding
 
         [Static, Export ("getStackTrace")]
         string[] GetStackTrace ();
+
+        [Static, Export ("getClassName:")]
+        string GetClassName (IntPtr handle);
     }
 
     [BaseType (typeof(NSObject))]
