@@ -25,6 +25,8 @@
 
 + (NSString *)getClassName:(id)obj;
 
++ (void)scheduleNotification:(NSString *)titleString body:(NSString *)bodyString userInfo:(NSDictionary *)userInfoDict withSound:(BOOL)yesOrNo;
+
 @end
 
 

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import <sys/param.h>
 #import <sys/stat.h>
 #import "mach/mach.h"
@@ -152,6 +153,18 @@
 + (NSString *) getClassName:(id)obj
 {
     return NSStringFromClass([obj class]);
+}
+
++ (void)scheduleNotification:(NSString *)alertTitle body:(NSString *)alertBody userInfo:(NSDictionary *)dict withSound:(BOOL)yesOrNo
+{
+    UILocalNotification *notif = [[UILocalNotification alloc] init];
+    notif.alertTitle = alertTitle;
+    notif.alertBody = alertBody;
+    notif.userInfo = dict;
+    if (yesOrNo) {
+        notif.soundName = UILocalNotificationDefaultSoundName;
+    }
+    [[UIApplication sharedApplication] scheduleLocalNotification:notif];
 }
 
 @end
