@@ -58,6 +58,9 @@ namespace NachoPlatformBinding
 
         [Static, Export ("getClassName:")]
         string GetClassName (IntPtr handle);
+
+        [Static, Export ("scheduleNotification:body:userInfo:withSound:")]
+        void ScheduleNotification (string title, string body, NSDictionary userInfo, bool withSound);
     }
 
     [BaseType (typeof(NSObject))]
