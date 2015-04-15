@@ -17,7 +17,7 @@ $(LIBCRYPTO):
 	make -C $(TOP)/ios-openssl
 
 libNachoPlatformLib-i386.a: $(LIBCRYPTO)
-	$(XBUILD) -project $(PROJECT) -target $(TARGET) -sdk iphonesimulator -configuration Release clean build
+	$(XBUILD) -project $(PROJECT) -target $(TARGET) -sdk iphonesimulator -arch i386 -configuration Release clean build
 	mv -f $(PROJECT_ROOT)/build/Release-iphonesimulator/lib$(TARGET).a $@
 
 libNachoPlatformLib-x86_64.a: $(LIBCRYPTO)
