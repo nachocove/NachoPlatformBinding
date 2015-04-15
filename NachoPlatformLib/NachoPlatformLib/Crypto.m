@@ -27,7 +27,7 @@
     return retval;
 }
 
-+ (NSString *)crlToString:(NSString *)crlPem;
++ (NSString *)crlToString:(NSString *)crlPem
 {
     if (nil == crlPem) {
         return nil;
