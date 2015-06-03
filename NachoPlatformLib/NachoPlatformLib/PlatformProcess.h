@@ -11,7 +11,7 @@
 
 @interface PlatformProcess : NSObject
 
-+ (long)getUsedMemory;
++ (long long)getUsedMemory;
 
 + (int)getCurrentNumberOfFileDescriptors;
 
