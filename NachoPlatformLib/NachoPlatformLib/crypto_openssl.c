@@ -1,4 +1,5 @@
 /* Copyright 2015, Nacho Cove, Inc. All rights reserved. */
+#define NO_OPENSSL
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -95,6 +96,9 @@ nc_buffer_printf (nc_buffer_t *buf, const char *fmt, ...)
 X509 *
 openssl_PEM_to_cert (const char *pem)
 {
+#ifdef NO_OPENSSL
+    return NULL;
+#else
     if (NULL == pem) {
         return NULL;
     }
@@ -106,11 +110,15 @@ openssl_PEM_to_cert (const char *pem)
     X509 *cert = PEM_read_bio_X509(mem, NULL, NULL, NULL);
     BIO_free (mem);
     return cert;
+#endif /* NO_OPENSSL */
 }
 
 X509_CRL *
 openssl_PEM_to_CRL (const char *pem)
 {
+#ifdef NO_OPENSSL
+    return NULL;
+#else
     if (NULL == pem) {
         return NULL;
     }
@@ -122,11 +130,15 @@ openssl_PEM_to_CRL (const char *pem)
     X509_CRL *crl = PEM_read_bio_X509_CRL(mem, NULL, NULL, NULL);
     BIO_free (mem);
     return crl;
+#endif
 }
 
 char *
 openssl_cert_to_string (const char *pem)
 {
+#ifdef NO_OPENSSL
+    return NULL;
+#else
     nc_buffer_t *buf = nc_buffer_alloc(MAX_DESC_BUF_SIZE);
     if ((NULL == buf) || (NULL == pem)) {
         return NULL;
@@ -154,11 +166,15 @@ openssl_cert_to_string (const char *pem)
         }
     }
     return nc_buffer_free(buf);
+#endif /* NO_OPENSSL */
 }
 
 char *
 openssl_crl_to_string (const char *pem)
 {
+#ifdef NO_OPENSSL
+    return NULL;
+#else
     nc_buffer_t *buf = nc_buffer_alloc(MAX_DESC_BUF_SIZE);
     if ((NULL == buf) || (NULL == pem)) {
         return NULL;
@@ -205,11 +221,15 @@ openssl_crl_to_string (const char *pem)
         }
     }
     return nc_buffer_free(buf);
+#endif /* NO_OPENSSL */
 }
 
 char **
 openssl_crl_get_revoked (const char *crl_pem, const char *cert_pem, const char **reason)
 {
+#ifdef NO_OPENSSL
+    return NULL;
+#else
     X509 *signing_cert = NULL;
     if (NULL != cert_pem) {
         signing_cert = openssl_PEM_to_cert(cert_pem);
@@ -251,4 +271,5 @@ openssl_crl_get_revoked (const char *crl_pem, const char *cert_pem, const char *
     }
     *reason = "OK";
     return sn_list;
+#endif /* NO_OPENSSL */
 }

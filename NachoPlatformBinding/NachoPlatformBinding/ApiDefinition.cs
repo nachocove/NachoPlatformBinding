@@ -1,5 +1,6 @@
 ﻿// # Copyright (C) 2014 Nacho Cove, Inc. All rights reserved.
 //
+#define NO_OPENSSL
 using System;
 using System.Drawing;
 using ObjCRuntime;
@@ -63,6 +64,7 @@ namespace NachoPlatformBinding
         void ScheduleNotification (string title, string body, NSDictionary userInfo, bool withSound);
     }
 
+    #if NO_OPENSSL
     [BaseType (typeof(NSObject))]
     interface Crypto
     {
@@ -78,5 +80,6 @@ namespace NachoPlatformBinding
         [Static, Export ("crlGetRevoked:")]
         string[] CrlGetRevoked (string crl);
     }
+    #endif
 }
 
