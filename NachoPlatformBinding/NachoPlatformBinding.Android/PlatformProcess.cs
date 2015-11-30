@@ -12,17 +12,14 @@ namespace NachoPlatformBinding
         {
         }
 
-        protected static int myPid ()
-        {
-            return Process.MyPid ();
-        }
+        protected static string ProcPathSelf = "/proc/self";
+        protected static string ProcPathSelfFd = ProcPathSelf + "/fd";
+        protected static string ProcPathSelfStatus = ProcPathSelf + "/status";
 
         protected static string SearchProcStatus (string target)
         {
-            var path = String.Format ("/proc/{0}/status", myPid ());
-
             string line;
-            using (System.IO.StreamReader file = new System.IO.StreamReader (path)) {
+            using (System.IO.StreamReader file = new System.IO.StreamReader (ProcPathSelfStatus)) {
                 while ((line = file.ReadLine ()) != null) {
                     if (line.StartsWith (target, StringComparison.OrdinalIgnoreCase)) {
                         if (target.Length < line.Length) {
@@ -58,8 +55,7 @@ namespace NachoPlatformBinding
 
         public static int GetCurrentNumberOfInUseFileDescriptors ()
         {
-            var path = String.Format ("/proc/{0}/fd", myPid ());
-            var dir = new DirectoryInfo (path);
+            var dir = new DirectoryInfo (ProcPathSelfFd);
             try {
                 return dir.GetFileSystemInfos ().Length;
             } catch (Exception e) {
@@ -83,7 +79,7 @@ namespace NachoPlatformBinding
 
         public static string GetFileNameForDescriptor (int fd)
         {
-            var path = String.Format ("/proc/{0}/fd/{1}", myPid (), fd);
+            var path = String.Format ("{0}/{1}", ProcPathSelfFd, fd);
             try {
                 var filename = readlink (path);
                 return filename;
