@@ -62,21 +62,5 @@ namespace NachoPlatformBinding
         [Static, Export ("scheduleNotification:body:userInfo:withSound:")]
         void ScheduleNotification (string title, string body, NSDictionary userInfo, bool withSound);
     }
-
-    [BaseType (typeof(NSObject))]
-    interface Crypto
-    {
-        [Static, Export ("certificateToString:")]
-        string CertificateToString (string pem);
-
-        [Static, Export ("crlToString:")]
-        string CrlToString (string pem);
-
-        [Static, Export ("crlGetRevoked:signingCert:")]
-        string[] CrlGetRevoked (string crl, string signingCert);
-
-        [Static, Export ("crlGetRevoked:")]
-        string[] CrlGetRevoked (string crl);
-    }
 }
 

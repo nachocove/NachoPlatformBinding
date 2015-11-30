@@ -17,8 +17,6 @@
 		224DF63E1ADDCC6D004BA3EA /* nc_sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = 224DF63D1ADDCC6D004BA3EA /* nc_sqlite3.c */; };
 		22A1D03018B7BF5200E4398C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A1D02F18B7BF5200E4398C /* Reachability.m */; };
 		BA92339019E67666002742D9 /* PlatformProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = BA92338F19E67666002742D9 /* PlatformProcess.m */; };
-		BABF9FBD1AC1DD0D00882AFA /* Crypto.m in Sources */ = {isa = PBXBuildFile; fileRef = BABF9FBC1AC1DD0D00882AFA /* Crypto.m */; };
-		BABF9FC11AC2120100882AFA /* crypto_openssl.c in Sources */ = {isa = PBXBuildFile; fileRef = BABF9FBF1AC2120100882AFA /* crypto_openssl.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,10 +56,6 @@
 		22A1D02F18B7BF5200E4398C /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = ../../../Reachability/Reachability.m; sourceTree = "<group>"; };
 		BA92338F19E67666002742D9 /* PlatformProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlatformProcess.m; sourceTree = "<group>"; };
 		BA92339119E676A3002742D9 /* PlatformProcess.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlatformProcess.h; sourceTree = "<group>"; };
-		BABF9FBC1AC1DD0D00882AFA /* Crypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Crypto.m; sourceTree = "<group>"; };
-		BABF9FBE1AC1DE1A00882AFA /* Crypto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Crypto.h; sourceTree = "<group>"; };
-		BABF9FBF1AC2120100882AFA /* crypto_openssl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = crypto_openssl.c; sourceTree = "<group>"; };
-		BABF9FC01AC2120100882AFA /* crypto_openssl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_openssl.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,15 +114,11 @@
 			isa = PBXGroup;
 			children = (
 				224DF63D1ADDCC6D004BA3EA /* nc_sqlite3.c */,
-				BABF9FBF1AC2120100882AFA /* crypto_openssl.c */,
-				BABF9FC01AC2120100882AFA /* crypto_openssl.h */,
 				22A1D02E18B7BF5200E4398C /* Reachability.h */,
 				22A1D02F18B7BF5200E4398C /* Reachability.m */,
 				224DEF9B18B7BEC200E88BA8 /* Supporting Files */,
 				BA92338F19E67666002742D9 /* PlatformProcess.m */,
 				BA92339119E676A3002742D9 /* PlatformProcess.h */,
-				BABF9FBC1AC1DD0D00882AFA /* Crypto.m */,
-				BABF9FBE1AC1DE1A00882AFA /* Crypto.h */,
 			);
 			path = NachoPlatformLib;
 			sourceTree = "<group>";
@@ -241,9 +231,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA92339019E67666002742D9 /* PlatformProcess.m in Sources */,
-				BABF9FBD1AC1DD0D00882AFA /* Crypto.m in Sources */,
 				22A1D03018B7BF5200E4398C /* Reachability.m in Sources */,
-				BABF9FC11AC2120100882AFA /* crypto_openssl.c in Sources */,
 				224DF63E1ADDCC6D004BA3EA /* nc_sqlite3.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
