@@ -59,7 +59,7 @@ namespace NachoPlatformBinding
             try {
                 return dir.GetFileSystemInfos ().Length;
             } catch (Exception e) {
-                Console.WriteLine ("GetCurrentNumberOfInUseFileDescriptors: error accessing file descriptors {0}", e);
+                Console.WriteLine ("GetCurrentNumberOfInUseFileDescriptors: error accessing file descriptors.");
                 return 0;
             }
         }
