@@ -2,7 +2,8 @@
 using System.IO;
 using Android.OS;
 using System.Runtime.InteropServices;
-
+using System.Collections.Generic;
+using System.Linq;
 
 namespace NachoPlatformBinding
 {
@@ -64,17 +65,41 @@ namespace NachoPlatformBinding
             }
         }
 
+        class FdComparer : IComparer<string>
+        {
+            public int Compare(string x, string y)  
+            {
+                return int.Parse(x) - int.Parse(y);
+            }
+        }
+
+        public static string[] GetCurrentInUseFileDescriptors ()
+        {
+            var list = new List<string> ();
+            var dir = new DirectoryInfo (ProcPathSelfFd);
+            foreach (var fileInfo in dir.GetFiles()) {
+                int result;
+                if (int.TryParse (fileInfo.Name, out result)) {
+                    list.Add (fileInfo.Name);
+                }
+            }
+            var arr = list.ToArray ();
+            Array.Sort(arr, new FdComparer());
+            return arr;
+        }
 
         [DllImport ("libc")]
-        private static extern int readlink(string path, byte[] buffer, int buflen);
+        private static extern int readlink (string path, byte[] buffer, int buflen);
 
-        public static string readlink(string path) {
+        public static string readlink (string path)
+        {
             byte[] buf = new byte[512];
-            int ret = readlink(path, buf, buf.Length);
-            if (ret == -1) return null;
+            int ret = readlink (path, buf, buf.Length);
+            if (ret == -1)
+                return null;
             char[] cbuf = new char[512];
-            int chars = System.Text.Encoding.Default.GetChars(buf, 0, ret, cbuf, 0);
-            return new String(cbuf, 0, chars);
+            int chars = System.Text.Encoding.Default.GetChars (buf, 0, ret, cbuf, 0);
+            return new String (cbuf, 0, chars);
         }
 
         public static string GetFileNameForDescriptor (int fd)

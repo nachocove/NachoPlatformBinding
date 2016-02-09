@@ -51,6 +51,23 @@
     return numInUseFds;
 }
 
++ (NSArray*)getCurrentInUseFileDescriptors
+{
+    struct stat info;
+    int numFds, numInUseFds = 0;
+
+    NSMutableArray * fds = [NSMutableArray new];
+    
+    numFds = [PlatformProcess getCurrentNumberOfFileDescriptors];
+    for (int fd = 0; fd < numFds; fd++) {
+        if (0 == fstat(fd, &info)) {
+            [fds addObject:[[NSString alloc] initWithFormat:@"%d", fd]];
+        }
+    }
+    return [fds copy];
+
+}
+
 + (NSString *)getFileNameForDescriptor:(int)fd
 {
     int rc;
