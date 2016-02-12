@@ -67,9 +67,9 @@ namespace NachoPlatformBinding
 
         class FdComparer : IComparer<string>
         {
-            public int Compare(string x, string y)  
+            public int Compare (string x, string y)
             {
-                return int.Parse(x) - int.Parse(y);
+                return int.Parse (x) - int.Parse (y);
             }
         }
 
@@ -77,14 +77,18 @@ namespace NachoPlatformBinding
         {
             var list = new List<string> ();
             var dir = new DirectoryInfo (ProcPathSelfFd);
-            foreach (var fileInfo in dir.GetFiles()) {
-                int result;
-                if (int.TryParse (fileInfo.Name, out result)) {
-                    list.Add (fileInfo.Name);
+            try {
+                foreach (var fileInfo in dir.GetFiles()) {
+                    int result;
+                    if (int.TryParse (fileInfo.Name, out result)) {
+                        list.Add (fileInfo.Name);
+                    }
                 }
+            } catch (Exception e) {
+                Console.WriteLine ("GetCurrentInUseFileDescriptors: error accessing file descriptors.");
             }
             var arr = list.ToArray ();
-            Array.Sort(arr, new FdComparer());
+            Array.Sort (arr, new FdComparer ());
             return arr;
         }
 
