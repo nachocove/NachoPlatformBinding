@@ -3,6 +3,9 @@ NachoPlatformBinding/NachoPlatformBinding.userprefs
 NachoPlatformLib/build/NachoPlatformLib.build
 NachoPlatformLib/NachoPlatformLib.xcodeproj/project.xcworkspace/xcuserdata
 NachoPlatformLib/NachoPlatformLib.xcodeproj/xcuserdata
+NachoPlatformLib.Mac/build
+NachoPlatformLib.Mac/NachoPlatformLib.xcodeproj/project.xcworkspace/xcuserdata
+NachoPlatformLib.Mac/NachoPlatformLib.xcodeproj/xcuserdata
 
 # Build Folders (you can keep bin if you'd like, to store dlls and pdbs)
 [Bb]in/

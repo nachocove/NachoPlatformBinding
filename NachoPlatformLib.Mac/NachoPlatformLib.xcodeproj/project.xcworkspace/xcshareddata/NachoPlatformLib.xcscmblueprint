@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "DB0DBBBDF701C4A0B70E6E2FCB4FE7A1CA7F463B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "DB0DBBBDF701C4A0B70E6E2FCB4FE7A1CA7F463B" : 0,
+    "7070BA961BCA286ED2393408B1E3D78393C99B33" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "04CD22B6-A677-46C0-82CD-4B0EAA9A1570",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "DB0DBBBDF701C4A0B70E6E2FCB4FE7A1CA7F463B" : "NachoPlatformBinding\/",
+    "7070BA961BCA286ED2393408B1E3D78393C99B33" : "Reachability\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "NachoPlatformLib",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "NachoPlatformLib.Mac\/NachoPlatformLib.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:nachocove\/Reachability.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7070BA961BCA286ED2393408B1E3D78393C99B33"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:nachocove\/NachoPlatformBinding.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "DB0DBBBDF701C4A0B70E6E2FCB4FE7A1CA7F463B"
+    }
+  ]
+}
