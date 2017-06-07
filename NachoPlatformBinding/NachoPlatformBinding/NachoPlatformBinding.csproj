@@ -24,6 +24,20 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <CustomCommands>
+      <CustomCommands>
+        <Command>
+          <type>BeforeBuild</type>
+          <command>make</command>
+          <workingdir>${ProjectDir}/../../NachoPlatformLib</workingdir>
+        </Command>
+        <Command>
+          <type>AfterClean</type>
+          <command>make clean</command>
+          <workingdir>${ProjectDir}/../../NachoPlatformLib</workingdir>
+        </Command>
+      </CustomCommands>
+    </CustomCommands>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -33,6 +47,20 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <CustomCommands>
+      <CustomCommands>
+        <Command>
+          <type>BeforeBuild</type>
+          <command>make</command>
+          <workingdir>${ProjectDir}/../../NachoPlatformLib</workingdir>
+        </Command>
+        <Command>
+          <type>AfterClean</type>
+          <command>make clean</command>
+          <workingdir>${ProjectDir}/../../NachoPlatformLib</workingdir>
+        </Command>
+      </CustomCommands>
+    </CustomCommands>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
