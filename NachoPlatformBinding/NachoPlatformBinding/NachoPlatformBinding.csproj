@@ -24,20 +24,6 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <CustomCommands>
-      <CustomCommands>
-        <Command>
-          <type>BeforeBuild</type>
-          <command>make</command>
-          <workingdir>${ProjectDir}/../../NachoPlatformLib</workingdir>
-        </Command>
-        <Command>
-          <type>AfterClean</type>
-          <command>make clean</command>
-          <workingdir>${ProjectDir}/../../NachoPlatformLib</workingdir>
-        </Command>
-      </CustomCommands>
-    </CustomCommands>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -47,21 +33,13 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <CustomCommands>
-      <CustomCommands>
-        <Command>
-          <type>BeforeBuild</type>
-          <command>make</command>
-          <workingdir>${ProjectDir}/../../NachoPlatformLib</workingdir>
-        </Command>
-        <Command>
-          <type>AfterClean</type>
-          <command>make clean</command>
-          <workingdir>${ProjectDir}/../../NachoPlatformLib</workingdir>
-        </Command>
-      </CustomCommands>
-    </CustomCommands>
   </PropertyGroup>
+  <Target Name="BuildNachoNative">
+    <Exec Command="make" WorkingDirectory="$(ProjectDir)/../../NachoPlatformLib"/>
+  </Target>
+  <Target Name="CleanNachoNative">
+    <Exec Command="make clean" WorkingDirectory="$(ProjectDir)/../../NachoPlatformLib"/>
+  </Target>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Xamarin.iOS" />
@@ -86,4 +64,14 @@
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
+  <PropertyGroup>
+    <BuildDependsOn>
+      BuildNachoNative;
+      $(BuildDependsOn);
+    </BuildDependsOn>
+    <CleanDependsOn>
+      $(CleanDependsOn);
+      CleanNachoNative;
+    </CleanDependsOn>
+  </PropertyGroup>
 </Project>
