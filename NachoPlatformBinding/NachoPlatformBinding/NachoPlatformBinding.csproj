@@ -35,10 +35,10 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <Target Name="BuildNachoNative">
-    <Exec Command="make" WorkingDirectory="$(ProjectDir)/../../NachoPlatformLib"/>
+    <Exec Command="make" WorkingDirectory="$(ProjectDir)/../../NachoPlatformLib" />
   </Target>
   <Target Name="CleanNachoNative">
-    <Exec Command="make clean" WorkingDirectory="$(ProjectDir)/../../NachoPlatformLib"/>
+    <Exec Command="make clean" WorkingDirectory="$(ProjectDir)/../../NachoPlatformLib" />
   </Target>
   <ItemGroup>
     <Reference Include="System" />
